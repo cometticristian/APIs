@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de peliculas</title>
+</head>
+
+<body>
+    
+    <% peliculas.forEach((pelicula) => { %>
+
+    <ul>
+        <li>
+            <a href="/movies/detail/<%= pelicula.id %>"><%= pelicula.title %></a>
+            
+        </li>
+    </ul>
+
+    <% }) %>
+
+    <a href="/movies/create"><button type="submit">CREAR PELICULA</button></a>
+
+</body>
+
+</html>
