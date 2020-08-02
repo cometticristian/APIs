@@ -4,11 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const methodOverride =  require('method-override');
+//var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/moviesRouter');
-var apiRouter = require('./routes/apis/apiMoviesRouter');
+var apiRouter = require('./routes/apis/apiRouter');
 
 var app = express();
 
@@ -21,7 +22,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -41,7 +44,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 module.exports = app;

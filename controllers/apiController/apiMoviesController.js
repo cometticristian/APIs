@@ -29,7 +29,7 @@ let apiMoviesController = {
                 console.log(error);
             })
     },
-    store: (res, req, next) => {
+    store: (req, res, next) => {
         db.Movie.create({
             title: req.body.title,
             rating: req.body.rating,
@@ -37,8 +37,8 @@ let apiMoviesController = {
             length: req.body.length,
             genre_id: req.body.genre
         })
-            .then(() => {
-                res.redirect('list');
+            .then((pelicula) => {
+                res.send(pelicula);
             })
             .catch((error) => {
                 console.log(error);
@@ -86,7 +86,9 @@ let apiMoviesController = {
 
         Promise.all([favourite, relation, movie])
             .then(() => {
-                res.redirect('/movies/list');
+                res.send({
+                    status: 200
+                });
             })
             .catch((error) => {
                 console.log(error);
