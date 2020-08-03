@@ -3,41 +3,49 @@ var router = express.Router();
 var apiMoviesController = require('../../controllers/apiController/apiMoviesController');
 var apiGenresController = require('../../controllers/apiController/apiGenresController');
 var apiActorsController = require('../../controllers/apiController/apiActorsController');
+var apiUsersController = require('../../controllers/apiController/apiUsersController');
+var middlewares = require('../../middlewares/token')
 
 // MOVIES \\
 
-router.get('/movies', apiMoviesController.list);
+router.get('/movies', middlewares, apiMoviesController.list);
 
-router.get('/movies/:id', apiMoviesController.detail);
+router.get('/movies/:id', middlewares, apiMoviesController.detail);
 
-router.post('/movies/create', apiMoviesController.store);
+router.post('/movies/create', middlewares, apiMoviesController.store);
 
-router.put('/movies/edit/:id', apiMoviesController.update);
+router.put('/movies/edit/:id', middlewares, apiMoviesController.update);
 
-router.delete('/movies/delete/:id', apiMoviesController.destroy);
+router.delete('/movies/delete/:id', middlewares, apiMoviesController.destroy);
 
 // GENRES \\
 
-router.get('/genres', apiGenresController.list);
+router.get('/genres', middlewares, apiGenresController.list);
 
-router.get('/genres/:id', apiGenresController.detail);
+router.get('/genres/:id', middlewares, apiGenresController.detail);
 
-router.post('/genres', apiGenresController.store);
+router.post('/genres', middlewares, apiGenresController.store);
 
-router.put('/genres/:id', apiGenresController.update);
+router.put('/genres/:id', middlewares, apiGenresController.update);
 
-router.delete('/genres/:id', apiGenresController.destroy);
+router.delete('/genres/:id', middlewares, apiGenresController.destroy);
 
 // ACTORS \\
 
-router.get('/actors', apiActorsController.list);
+router.get('/actors', middlewares, apiActorsController.list);
 
-router.get('/actors/:id', apiActorsController.detail);
+router.get('/actors/:id', middlewares, apiActorsController.detail);
 
-router.post('/actors', apiActorsController.store);
+router.post('/actors', middlewares, apiActorsController.store);
 
-router.put('/actors/:id', apiActorsController.update);
+router.put('/actors/:id', middlewares, apiActorsController.update);
 
-router.delete('/actors/:id', apiActorsController.destroy);
+router.delete('/actors/:id', middlewares, apiActorsController.destroy);
+
+// USERS \\
+
+router.post('/users/login', apiUsersController.login);
+
+router.post('/users/register', apiUsersController.register);
 
 module.exports = router;
